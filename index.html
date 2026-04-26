@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Acervo digital histórico e calendário escolar da E.E.F.M Padre Itamar Luiz da Costa."
+    />
+    <title>Acervo Digital | Padre Itamar</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/png" href="img/logo.png?v=1.1" />
+    <link rel="apple-touch-icon" href="img/logo.png" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="glass-header">
+      <nav class="container nav-wrapper">
+        <div class="logo-area" onclick="showPage('home')">
+          <div class="logo-circle">
+            <img
+              src="img/logo.png"
+              id="main-logo-img"
+              onerror="this.src = 'https://via.placeholder.com/50'"
+            />
+          </div>
+          <div class="brand-text">
+            <h1>ACERVO <span>DIGITAL</span></h1>
+            <p>E.E.F.M Padre Itamar Luiz da Costa</p>
+          </div>
+        </div>
+        <div class="nav-menu">
+          <button
+            onclick="showPage('home')"
+            class="nav-btn active"
+            id="btn-home"
+          >
+            INÍCIO
+          </button>
+          <button
+            onclick="showPage('galeria')"
+            class="nav-btn"
+            id="btn-galeria"
+          >
+            GALERIA
+          </button>
+          <button
+            onclick="showPage('calendario')"
+            class="nav-btn"
+            id="btn-calendario"
+          >
+            CALENDÁRIO
+          </button>
+          <button onclick="showPage('sobre')" class="nav-btn" id="btn-sobre">
+            SOBRE
+          </button>
+          <button onclick="showPage('login')" class="admin-icon" id="btn-login">
+            <i class="fas fa-shield-alt"></i>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="main-content">
+      <section id="home" class="page active">
+        <div class="container">
+          <div class="carousel-wrapper glass-card">
+            <div class="carousel-track" id="track-home"></div>
+          </div>
+          <div class="home-cards-grid">
+            <div
+              class="glass-card feature-card clickable-card"
+              onclick="showPage('galeria')"
+            >
+              <i class="fas fa-landmark"></i>
+              <h3>Patrimônio Histórico</h3>
+              <p>Acesse nossa galeria de fotos históricas.</p>
+            </div>
+            <div
+              class="glass-card feature-card clickable-card"
+              onclick="showPage('calendario')"
+            >
+              <i class="fas fa-graduation-cap"></i>
+              <h3>Calendário Escolar</h3>
+              <p>Veja as datas e eventos do ano letivo.</p>
+            </div>
+            <div
+              class="glass-card feature-card clickable-card"
+              onclick="showPage('sobre')"
+            >
+              <i class="fas fa-users-viewfinder"></i>
+              <h3>Nossa História</h3>
+              <p>Saiba mais sobre a trajetória da nossa escola.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="galeria" class="page container">
+        <div class="gallery-filter-bar glass-card">
+          <select
+            id="year-selector"
+            class="select-modern"
+            onchange="filtrarAno(this.value)"
+          ></select>
+          <div class="filter-pills">
+            <button class="pill active" onclick="filtrarCat('TODAS', this)">
+              Todas
+            </button>
+            <button class="pill" onclick="filtrarCat('ATIVIDADES', this)">
+              Atividades
+            </button>
+            <button class="pill" onclick="filtrarCat('DESFILE', this)">
+              Desfile
+            </button>
+            <button class="pill" onclick="filtrarCat('EVENTOS', this)">
+              Eventos
+            </button>
+            <button class="pill" onclick="filtrarCat('INFRAESTRUTURA', this)">
+              Infraestrutura
+            </button>
+            <button class="pill" onclick="filtrarCat('HOMENAGEM', this)">
+              Homenagem
+            </button>
+          </div>
+        </div>
+        <div class="elegant-grid" id="main-grid"></div>
+      </section>
+
+      <section id="calendario" class="page container">
+        <div class="glass-card">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 20px;
+            "
+          >
+            <h2>Calendário Escolar</h2>
+            <h3 id="cal-clock" style="color: var(--accent)">00:00:00</h3>
+          </div>
+          <div id="calendar-list"></div>
+        </div>
+      </section>
+
+      <section id="sobre" class="page container">
+        <div class="glass-card">
+          <div class="sobre-topo">
+            <div class="sobre-content-left">
+              <span class="badge-accent">NOSSA TRAJETÓRIA</span>
+              <h2>E.E.F.M. Padre Itamar Luiz da Costa</h2>
+              <p>
+                Há mais de meio século, em uma comunidade que crescia cheia de
+                sonhos e desafios, nascia a Escola Padre Itamar Luiz da Costa.
+                No início, era simples: algumas salas, poucos recursos, mas um
+                propósito enorme — educar, acolher e transformar vidas. Com o
+                passar dos anos, a escola se tornou um verdadeiro ponto de
+                referência para famílias inteiras.
+              </p>
+
+              <p></p>
+              <p></p>
+            </div>
+            <div class="sobre-content-right">
+              <div class="school-photo-frame">
+                <img
+                  src="escola.jpg"
+                  id="img-sobre-display"
+                  alt="Fachada da Escola"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="sobre-historia">
+            <p>
+              Gerações passaram pelos corredores da escola. Pais que um dia
+              foram alunos voltaram anos depois, agora trazendo seus filhos.
+              Histórias se entrelaçaram, amizades nasceram e sonhos começaram a
+              tomar forma dentro daquelas salas. Hoje, com mais de 50 anos de
+              história, a Escola Padre Itamar Luiz da Costa não é apenas um
+              lugar de ensino — é um símbolo de tradição, cuidado e compromisso
+              com o futuro. Uma instituição que continua plantando sementes de
+              conhecimento, colhendo cidadãos preparados para o mundo.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="login" class="page container">
+        <div
+          id="login-box"
+          class="glass-card login-center"
+          style="max-width: 400px; margin: 0 auto"
+        >
+          <h3>Painel Administrativo</h3>
+          <input
+            type="email"
+            id="adm-email"
+            placeholder="E-mail"
+            class="input-modern"
+          />
+          <input
+            type="password"
+            id="adm-pass"
+            placeholder="Senha"
+            class="input-modern"
+          />
+          <button
+            onclick="efetuarLogin()"
+            class="btn-primary"
+            id="btn-login-action"
+          >
+            ENTRAR
+          </button>
+        </div>
+
+        <div id="admin-panel" style="display: none">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 20px;
+            "
+          >
+            <div style="display: flex; gap: 10px">
+              <button
+                onclick="alterarMinhaSenha()"
+                class="btn-danger-small"
+                style="background: var(--accent)"
+              >
+                MUDAR SENHA
+              </button>
+              <button
+                onclick="cadastrarNovoAdmin()"
+                class="btn-danger-small"
+                style="background: #27ae60"
+              >
+                NOVO USUÁRIO
+              </button>
+            </div>
+            <button onclick="logout()" class="btn-danger-small">SAIR</button>
+          </div>
+          <div class="admin-dashboard">
+            <div class="glass-card" style="margin-bottom: 20px">
+              <h4>Novo Upload</h4>
+              <input
+                type="file"
+                id="new-img-file"
+                multiple
+                class="input-modern"
+              />
+              <select id="new-img-cat" class="input-modern">
+                <option value="ATIVIDADES">ATIVIDADES</option>
+                <option value="DESFILE">DESFILE</option>
+                <option value="EVENTOS">EVENTOS</option>
+                <option value="INFRAESTRUTURA">INFRAESTRUTURA</option>
+                <option value="HOMENAGEM">HOMENAGEM</option>
+                <option value="SLIDE">SLIDE (HOME)</option>
+                <option value="LOGO">LOGO</option>
+                <option value="SOBRE">FOTO SOBRE</option>
+                <option value="FAVICON">FAVICON</option>
+              </select>
+              <select id="new-img-year" class="input-modern"></select>
+              <button
+                onclick="uploadCloudinary()"
+                class="btn-primary"
+                id="btn-upload"
+              >
+                ENVIAR
+              </button>
+            </div>
+            <div class="glass-card admin-main-container">
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  margin-bottom: 15px;
+                "
+              >
+                <h4>Gerenciar Acervo</h4>
+                <button
+                  onclick="excluirSelecionados()"
+                  class="btn-danger-small"
+                >
+                  <i class="fas fa-trash"></i> Excluir
+                </button>
+              </div>
+              <div id="lista-admin" class="admin-grid-selection"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer-modern">
+      <div class="container footer-grid">
+        <div>
+          <h3>ESCOLA PADRE ITAMAR LUIZ DA COSTA</h3>
+          <p>Estrada Geral Ponta Grossa, Imaruí - SC</p>
+          <p style="font-size: 0.8rem; margin-top: 10px; color: #bdc3c7">
+            Desenvolvido por:
+            <strong
+              >Valmir Ap. Bezerra aluno de Análise e Desenvolvimento de
+              Sistemas</strong
+            >
+          </p>
+        </div>
+        <div class="footer-contacts">
+          <a href="mailto:escolaitamarluiz@gmail.com" target="_blank"
+            ><i class="fas fa-envelope"></i> escolaitamarluiz@gmail.com</a
+          >
+        </div>
+        <div class="footer-social-icons">
+          <a
+            href="https://www.facebook.com/profile.php?id=61565266451755"
+            target="_blank"
+            ><i class="fab fa-facebook"></i
+          ></a>
+          <a
+            href="https://www.instagram.com/escolapadreluizdacosta/"
+            target="_blank"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a
+            href="https://wa.me/5548998118259?text=Ol%C3%A1!%20Como%20a%20Escola%20Padre%20Itamar%20Luiz%20da%20Costa%20pode%20lhe%20ajudar%3F"
+            target="_blank"
+            ><i class="fab fa-whatsapp"></i
+          ></a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyBGLaM3V6e80oOluuvr2J2_kCg4AWXxrAs",
+        authDomain: "acervo-digital-itamar.firebaseapp.com",
+        projectId: "acervo-digital-itamar",
+        storageBucket: "acervo-digital-itamar.firebasestorage.app",
+        messagingSenderId: "1095003121133",
+        appId: "1:1095003121133:web:6d9a4aef6ee4afca6573e4",
+        measurementId: "G-H9FLJMGQTF",
+      };
+      firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>
