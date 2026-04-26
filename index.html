@@ -1,238 +1,143 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Acervo digital histórico e calendário escolar da E.E.F.M Padre Itamar Luiz da Costa."
-    />
-    <title>Acervo Digital | Padre Itamar</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" type="image/png" href="img/logo.png?v=1.1" />
-    <link rel="apple-touch-icon" href="img/logo.png" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acervo Digital Padre Itamar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-
-  <body>
     <header class="glass-header">
-      <nav class="container nav-wrapper">
-        <div class="logo-area" onclick="showPage('home')">
-          <div class="logo-circle">
-            <img
-              src="img/logo.png"
-              id="main-logo-img"
-              onerror="this.src = 'https://via.placeholder.com/50'"
-            />
-          </div>
-          <div class="brand-text">
-            <h1>ACERVO <span>DIGITAL</span></h1>
-            <p>E.E.F.M Padre Itamar Luiz da Costa</p>
-          </div>
+        <div class="container nav-wrapper">
+            <div class="logo-area" onclick="showPage('home')">
+                <div class="logo-circle">
+                    <img src="logo.png" alt="Logo" id="main-logo-img" onerror="this.src='https://via.placeholder.com/50'">
+                </div>
+                <div class="brand-text">
+                    <h1>Acervo <span>Itamar</span></h1>
+                    <p>Memória Digital Escolar</p>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <button class="nav-btn active" id="btn-home" onclick="showPage('home')">Início</button>
+                <button class="nav-btn" id="btn-galeria" onclick="showPage('galeria')">Galeria</button>
+                <button class="nav-btn" id="btn-sobre" onclick="showPage('sobre')">Sobre</button>
+                <button class="admin-icon" onclick="showPage('login')">
+                    <i class="fas fa-user-shield"></i>
+                </button>
+            </nav>
         </div>
-
-        <div class="nav-menu">
-          <button onclick="showPage('home')" class="nav-btn active" id="btn-home">
-            INÍCIO
-          </button>
-          <button onclick="showPage('galeria')" class="nav-btn" id="btn-galeria">
-            GALERIA
-          </button>
-          <button onclick="showPage('calendario')" class="nav-btn" id="btn-calendario">
-            CALENDÁRIO
-          </button>
-          <button onclick="showPage('sobre')" class="nav-btn" id="btn-sobre">
-            SOBRE
-          </button>
-          <button onclick="showPage('login')" class="admin-icon" id="btn-login">
-            <i class="fas fa-shield-alt"></i>
-          </button>
-        </div>
-      </nav>
     </header>
 
-    <main class="main-content">
-
-      <!-- HOME -->
-      <section id="home" class="page active">
-        <div class="container">
-
-          <div class="carousel-wrapper glass-card">
-            <div class="carousel-track" id="track-home"></div>
-          </div>
-
-          <div class="home-cards-grid">
-            <div class="glass-card clickable-card" onclick="showPage('galeria')">
-              <i class="fas fa-landmark"></i>
-              <h3>Patrimônio Histórico</h3>
-              <p>Acesse nossa galeria de fotos históricas.</p>
+    <main class="main-content container">
+        
+        <section id="home" class="page active">
+            <div class="carousel-wrapper">
+                <div class="carousel-track" id="track-home">
+                    </div>
             </div>
 
-            <div class="glass-card clickable-card" onclick="showPage('calendario')">
-              <i class="fas fa-graduation-cap"></i>
-              <h3>Calendário Escolar</h3>
-              <p>Veja as datas e eventos do ano letivo.</p>
+            <div class="home-cards-grid">
+                <div class="glass-card clickable-card" onclick="showPage('galeria')">
+                    <i class="fas fa-images"></i>
+                    <h3>Fotos Históricas</h3>
+                    <p>Explore nosso acervo categorizado.</p>
+                </div>
+                <div class="glass-card">
+                    <h3>Próximos Eventos</h3>
+                    <div id="calendar-list">
+                        </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="galeria" class="page">
+            <div class="gallery-filter-bar glass-card">
+                <div class="filter-pills">
+                    <button class="pill active filter-btn" onclick="filtrarGaleria('TODAS', this)">Todas</button>
+                    <button class="pill filter-btn" onclick="filtrarGaleria('FESTA', this)">Festas</button>
+                    <button class="pill filter-btn" onclick="filtrarGaleria('FORMATURA', this)">Formaturas</button>
+                    <button class="pill filter-btn" onclick="filtrarGaleria('ESPORTES', this)">Esportes</button>
+                    <button class="pill filter-btn" onclick="filtrarGaleria('IGREJA', this)">Igreja</button>
+                </div>
+                <select id="year-selector" onchange="filtrarPorSeletor(this.value)">
+                    </select>
             </div>
 
-            <div class="glass-card clickable-card" onclick="showPage('sobre')">
-              <i class="fas fa-users-viewfinder"></i>
-              <h3>Nossa História</h3>
-              <p>Saiba mais sobre a trajetória da nossa escola.</p>
+            <div class="elegant-grid" id="main-grid">
+                </div>
+        </section>
+
+        <section id="sobre" class="page">
+            <div class="glass-card">
+                <div class="sobre-topo">
+                    <div class="sobre-historia">
+                        <h2>Nossa História</h2>
+                        <p>O Acervo Digital Padre Itamar é uma iniciativa para preservar a memória fotográfica e histórica da nossa instituição, mantendo vivos os momentos que construíram nossa comunidade.</p>
+                    </div>
+                    <div class="school-photo-frame">
+                        <img src="escola.jpg" alt="Foto da Escola" onerror="this.src='https://via.placeholder.com/400x300'">
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- GALERIA -->
-      <section id="galeria" class="page container">
-
-        <div class="gallery-filter-bar glass-card">
-          <select id="year-selector" onchange="filtrarAno(this.value)"></select>
-
-          <div class="filter-pills">
-            <button class="pill active" onclick="filtrarCat('TODAS', this)">Todas</button>
-            <button class="pill" onclick="filtrarCat('ATIVIDADES', this)">Atividades</button>
-            <button class="pill" onclick="filtrarCat('DESFILE', this)">Desfile</button>
-            <button class="pill" onclick="filtrarCat('EVENTOS', this)">Eventos</button>
-            <button class="pill" onclick="filtrarCat('INFRAESTRUTURA', this)">Infraestrutura</button>
-            <button class="pill" onclick="filtrarCat('HOMENAGEM', this)">Homenagem</button>
-          </div>
-        </div>
-
-        <div class="elegant-grid" id="main-grid"></div>
-      </section>
-
-      <!-- CALENDÁRIO -->
-      <section id="calendario" class="page container">
-        <div class="glass-card">
-          <div style="display:flex;justify-content:space-between;align-items:center;">
-            <h2>Calendário Escolar</h2>
-            <h3 id="cal-clock">00:00:00</h3>
-          </div>
-
-          <div id="calendar-list"></div>
-        </div>
-      </section>
-
-      <!-- SOBRE -->
-      <section id="sobre" class="page container">
-        <div class="glass-card">
-
-          <div class="sobre-topo">
-
-            <div>
-              <span class="badge-accent">NOSSA TRAJETÓRIA</span>
-              <h2>E.E.F.M. Padre Itamar Luiz da Costa</h2>
-
-              <p>
-                Há mais de meio século nasceu a escola com um propósito enorme:
-                educar, acolher e transformar vidas.
-              </p>
+        <section id="login" class="page">
+            <div class="glass-card" style="max-width: 400px; margin: 0 auto;" id="login-form">
+                <h2 style="text-align: center; margin-bottom: 20px;">Acesso Administrativo</h2>
+                <input type="email" id="adm-email" class="input-modern" placeholder="E-mail">
+                <input type="password" id="adm-pass" class="input-modern" placeholder="Senha">
+                <button class="btn-primary" onclick="efetuarLogin()">ENTRAR</button>
             </div>
 
-            <div class="school-photo-frame">
-              <img src="escola.jpg" id="img-sobre-display" />
+            <div id="admin-panel" style="display: none;">
+                <div class="glass-card admin-main-container">
+                    <h2>Painel de Controle</h2>
+                    <hr style="margin: 15px 0;">
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="upload-section">
+                            <h3>Novo Upload</h3>
+                            <input type="file" id="new-img-file" class="input-modern" multiple>
+                            <select id="new-img-cat" class="input-modern">
+                                <option value="FESTA">Festa</option>
+                                <option value="FORMATURA">Formatura</option>
+                                <option value="ESPORTES">Esportes</option>
+                                <option value="IGREJA">Igreja</option>
+                                <option value="SLIDE">Destaque (Slide)</option>
+                                <option value="LOGO">Logo do Site</option>
+                            </select>
+                            <select id="new-img-year" class="input-modern">
+                                </select>
+                            <button id="btn-upload-action" class="btn-primary" onclick="processarNovaImagem()">EXECUTAR UPLOAD</button>
+                        </div>
+
+                        <div class="delete-section">
+                            <h3>Gerenciar Arquivos</h3>
+                            <div id="lista-exclusao-admin" class="admin-grid-selection">
+                                </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-          </div>
-
-          <div class="sobre-historia">
-            <p>
-              Hoje, com mais de 50 anos, a escola é símbolo de tradição e compromisso.
-            </p>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- LOGIN / ADMIN -->
-      <section id="login" class="page container">
-
-        <div id="login-box" class="glass-card" style="max-width:400px;margin:auto;">
-          <h3>Painel Administrativo</h3>
-
-          <input type="email" id="adm-email" placeholder="E-mail" class="input-modern" />
-          <input type="password" id="adm-pass" placeholder="Senha" class="input-modern" />
-
-          <button onclick="efetuarLogin()" class="btn-primary" id="btn-login-action">
-            ENTRAR
-          </button>
-        </div>
-
-        <div id="admin-panel" style="display:none;">
-
-          <div style="display:flex;justify-content:space-between;">
-            <div>
-              <button onclick="cadastrarNovoAdmin()" class="btn-danger-small">
-                NOVO USUÁRIO
-              </button>
-            </div>
-
-            <button onclick="location.reload()" class="btn-danger-small">
-              SAIR
-            </button>
-          </div>
-
-          <div class="glass-card">
-            <h4>Novo Upload</h4>
-
-            <input type="file" id="new-img-file" multiple class="input-modern" />
-
-            <select id="new-img-cat" class="input-modern">
-              <option value="ATIVIDADES">ATIVIDADES</option>
-              <option value="DESFILE">DESFILE</option>
-              <option value="EVENTOS">EVENTOS</option>
-              <option value="INFRAESTRUTURA">INFRAESTRUTURA</option>
-              <option value="HOMENAGEM">HOMENAGEM</option>
-              <option value="SLIDE">SLIDE</option>
-            </select>
-
-            <select id="new-img-year" class="input-modern"></select>
-
-            <button onclick="uploadCloudinary()" class="btn-primary">
-              ENVIAR
-            </button>
-          </div>
-
-          <div class="glass-card">
-            <h4>Gerenciar</h4>
-            <div id="lista-admin"></div>
-          </div>
-
-        </div>
-
-      </section>
-
+        </section>
     </main>
 
-    <!-- FOOTER -->
+    <div id="fullscreen-overlay" onclick="closeFullscreen()">
+        <span class="close-btn">&times;</span>
+        <img id="fullscreen-img" src="" alt="Foto ampliada">
+    </div>
+
     <footer class="footer-modern">
-      <div class="container footer-grid">
-
-        <div>
-          <h3>ESCOLA PADRE ITAMAR</h3>
-          <p>Imaruí - SC</p>
+        <div class="container">
+            <p>&copy; 2024 Acervo Digital Padre Itamar. Todos os direitos reservados.</p>
         </div>
-
-        <div class="footer-social-icons">
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-whatsapp"></i></a>
-        </div>
-
-      </div>
     </footer>
 
-    <!-- SCRIPT FINAL -->
     <script src="script.js"></script>
-
-  </body>
+</body>
 </html>
